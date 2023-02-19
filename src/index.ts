@@ -19,6 +19,10 @@ app.use(session({
     secret: secret?secret: 'secret',
     resave: false,
     saveUninitialized: false,
+    name: "miiya",
+    cookie: {
+      sameSite: 'none'
+    }
 }))
 app.use(passport.initialize())
 app.use(passport.session())
