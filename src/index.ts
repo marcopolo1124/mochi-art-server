@@ -8,6 +8,7 @@ import cors from 'cors'
 import passport = require('passport');
 import session from 'express-session'
 import initialize from './routes/passport-config'
+import fs from 'fs'
 dotenv.config();
 
 const app: Express = express();
@@ -35,6 +36,17 @@ app.use('/commissions', commissions)
 app.use('/admin', Admin(passport))
 const gallery = process.env.GALLERY_PATH?process.env.GALLERY_PATH: "../gallery_images"
 const commission = process.env.COMMISSION_PATH?process.env.COMMISSION_PATH: "../commission_images"
+
+if (!fs.existsSync(gallery)){
+  console.log("making directory gallery")
+  fs.mkdirSync(gallery)
+}
+
+if (!fs.existsSync(commission)){
+  console.log("making directory commission")
+  fs.mkdirSync(commission)
+}
+
 app.use('/static-gallery', express.static(gallery))
 app.use('/static-commission', express.static(commission))
 

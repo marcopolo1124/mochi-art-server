@@ -13,6 +13,7 @@ const cors_1 = __importDefault(require("cors"));
 const passport = require("passport");
 const express_session_1 = __importDefault(require("express-session"));
 const passport_config_1 = __importDefault(require("./routes/passport-config"));
+const fs_1 = __importDefault(require("fs"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT;
@@ -38,6 +39,14 @@ app.use('/commissions', comissions_1.default);
 app.use('/admin', (0, admin_1.default)(passport));
 const gallery = process.env.GALLERY_PATH ? process.env.GALLERY_PATH : "../gallery_images";
 const commission = process.env.COMMISSION_PATH ? process.env.COMMISSION_PATH : "../commission_images";
+if (!fs_1.default.existsSync(gallery)) {
+    console.log("making directory gallery");
+    fs_1.default.mkdirSync(gallery);
+}
+if (!fs_1.default.existsSync(commission)) {
+    console.log("making directory commission");
+    fs_1.default.mkdirSync(commission);
+}
 app.use('/static-gallery', express_1.default.static(gallery));
 app.use('/static-commission', express_1.default.static(commission));
 app.set("view_engine", "ejs");
