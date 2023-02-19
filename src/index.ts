@@ -14,14 +14,6 @@ dotenv.config();
 const app: Express = express();
 const port = process.env.PORT;
 initialize(passport)
-
-const corsOptions = {
-  // origin: 'https://miiyachi-art-store.vercel.app',
-  origin: 'http://localhost:3000',
-  optionsSuccessStatus: 200,
-  credentials: true
-}
-
 const secret = process.env.SESSION_SECRET
 app.use(session({
     secret: secret?secret: 'secret',
@@ -32,7 +24,13 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(express.json())
 app.use(express.urlencoded( {extended: false} ))
-app.use(cors(corsOptions))
+app.use(cors({
+  // origin: 'https://miiyachi-art-store.vercel.app',
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200,
+  credentials: true
+}
+))
 app.use('/state', site_state)
 app.use('/images', images)
 app.use('/commissions', commissions)
