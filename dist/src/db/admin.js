@@ -32,14 +32,6 @@ function getAdminByUsername(username) {
     });
 }
 exports.getAdminByUsername = getAdminByUsername;
-function postAdmin(username, password) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const salt = yield bcrypt_1.default.genSalt(10);
-        const hashedPassword = yield bcrypt_1.default.hash(password, salt);
-        yield pool_1.default.query('INSERT INTO users.admin (username, password)\
-         VALUES ($1, $2)', [username, hashedPassword]);
-    });
-}
 function updateAdminPassword(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const { username, password } = req.body;

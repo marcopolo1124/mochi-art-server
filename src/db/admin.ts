@@ -19,15 +19,7 @@ export async function getAdminByUsername(username: string) {
     }
 }
 
-async function postAdmin(username: string, password: string){
-    const salt = await bcrypt.genSalt(10)
-    const hashedPassword = await bcrypt.hash(password, salt)
-    await pool.query(
-        'INSERT INTO users.admin (username, password)\
-         VALUES ($1, $2)'
-        , [username, hashedPassword]
-    )
-}
+
 
 export async function updateAdminPassword(req: Request, res: Response, next: NextFunction){
     const {username, password} = req.body
