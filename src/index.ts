@@ -10,23 +10,25 @@ import session from 'express-session'
 import initialize from './routes/passport-config'
 import fs from 'fs'
 dotenv.config();
-
 const app: Express = express();
-const port = process.env.PORT;
-initialize(passport)
 const secret = process.env.SESSION_SECRET
 app.use(session({
-    secret: secret?secret: 'secret',
-    resave: false,
-    saveUninitialized: false,
-    name: "miiya",
-    cookie: {
-      sameSite: 'none',
-      maxAge: 60 * 60 * 24 * 1000,
-      httpOnly: true,
-      secure: true,
-    }
+  secret: secret?secret: 'secret',
+  resave: false,
+  saveUninitialized: false,
+  name: "miiya",
+  cookie: {
+    sameSite: 'none',
+    maxAge: 60 * 60 * 24 * 1000,
+    httpOnly: true,
+    secure: true,
+  }
 }))
+
+const port = process.env.PORT;
+initialize(passport)
+
+
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(express.json())
