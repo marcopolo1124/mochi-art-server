@@ -19,7 +19,8 @@ const app = (0, express_1.default)();
 const port = process.env.PORT;
 (0, passport_config_1.default)(passport);
 const corsOptions = {
-    origin: 'https://miiyachi-art-store.vercel.app',
+    // origin: 'https://miiyachi-art-store.vercel.app',
+    origin: 'http://localhost:3000',
     optionsSuccessStatus: 200,
     credentials: true
 };
@@ -33,7 +34,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)(corsOptions));
 app.use('/state', site_state_1.default);
 app.use('/images', images_1.default);
 app.use('/commissions', comissions_1.default);
