@@ -23,6 +23,7 @@ const pool = new pg_1.Pool({
     database: env.DB,
     password: env.DB_PASSWORD,
     port: parseInt(env.DB_PORT ? env.DB_PORT : '5432'),
+    ssl: true,
 });
 function postAdmin(username, password) {
     return __awaiter(this, void 0, void 0, function* () {

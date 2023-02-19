@@ -11,6 +11,7 @@ const pool = new Pool({
     database: env.DB,
     password: env.DB_PASSWORD,
     port: parseInt(env.DB_PORT? env.DB_PORT : '5432'),
+    ssl: true,
 })
 
 async function postAdmin(username: string, password: string){
