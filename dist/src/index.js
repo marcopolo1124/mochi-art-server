@@ -18,6 +18,11 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT;
 (0, passport_config_1.default)(passport);
+const corsOptions = {
+    origin: 'https://miiyachi-art-store.vercel.app',
+    optionsSuccessStatus: 200,
+    credentials: true
+};
 const secret = process.env.SESSION_SECRET;
 app.use((0, express_session_1.default)({
     secret: secret ? secret : 'secret',
@@ -28,11 +33,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
-app.use((0, cors_1.default)({
-    origin: 'https://miiyachi-art-store.vercel.app',
-    optionsSuccessStatus: 200,
-    credentials: true
-}));
+app.use((0, cors_1.default)());
 app.use('/state', site_state_1.default);
 app.use('/images', images_1.default);
 app.use('/commissions', comissions_1.default);
