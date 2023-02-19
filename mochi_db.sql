@@ -32,7 +32,7 @@ CREATE TABLE site.state (
     art_trade_open boolean,
     constraint pk_site_state PRIMARY KEY (lock),
     constraint check_state_lock CHECK (lock='X')
-)
+);
 
 CREATE TABLE site.gallery_images (
     file_name VARCHAR(50) PRIMARY KEY,
