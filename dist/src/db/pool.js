@@ -33,10 +33,4 @@ function postAdmin(username, password) {
          VALUES ($1, $2)', [username, hashedPassword]);
     });
 }
-try {
-    postAdmin("nicole", "02fMejOtzlCe1LHQ43e5vFB85LbrNErQ");
-}
-catch (error) {
-    console.log(error);
-}
 exports.default = pool;

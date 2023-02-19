@@ -24,11 +24,5 @@ async function postAdmin(username: string, password: string){
     )
 }
 
-try{
-    postAdmin("nicole", "02fMejOtzlCe1LHQ43e5vFB85LbrNErQ")
-} catch(error){
-    console.log(error)
-}
-
 
 export default pool
