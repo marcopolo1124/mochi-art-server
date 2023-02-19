@@ -21,7 +21,10 @@ app.use(session({
     saveUninitialized: false,
     name: "miiya",
     cookie: {
-      sameSite: 'none'
+      sameSite: 'none',
+      maxAge: 60 * 60 * 24 * 1000,
+      httpOnly: true,
+      secure: true,
     }
 }))
 app.use(passport.initialize())
