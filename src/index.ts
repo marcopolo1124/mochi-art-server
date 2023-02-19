@@ -25,7 +25,7 @@ app.use(passport.session())
 app.use(express.json())
 app.use(express.urlencoded( {extended: false} ))
 app.use(cors({
-  origin: 'https://miiyachi-art-store-ea49t8xqf-marcopolo1124.vercel.app/',
+  origin: 'https://miiyachi-art-store.vercel.app/',
   optionsSuccessStatus: 200,
   credentials: true
 }))
