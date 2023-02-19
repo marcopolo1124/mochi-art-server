@@ -28,7 +28,7 @@ app.use(passport.session());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use((0, cors_1.default)({
-    origin: 'https://miiyachi-art-store.vercel.app/',
+    origin: 'https://miiyachi-art-store-ea49t8xqf-marcopolo1124.vercel.app/',
     optionsSuccessStatus: 200,
     credentials: true
 }));
