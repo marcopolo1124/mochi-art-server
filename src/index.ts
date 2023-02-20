@@ -20,16 +20,7 @@ initialize(passport)
 
 
 app.use(express.urlencoded( {extended: false} ))
-// app.use(session({
-//   secret: secret?secret: 'secret',
-//   resave: false,
-//   saveUninitialized: false,
-//   // cookie: {
-//   //   sameSite: 'none',
-//   //   maxAge: 60 * 60 * 24,
-//   //   secure: true,
-//   // }
-// }))
+
 app.use(cookieSession({
   secret: secret?secret: 'secret',
   sameSite: 'none',

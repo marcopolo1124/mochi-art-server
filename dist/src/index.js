@@ -20,16 +20,6 @@ const secret = process.env.SESSION_SECRET;
 const port = process.env.PORT;
 (0, passport_config_1.default)(passport);
 app.use(express_1.default.urlencoded({ extended: false }));
-// app.use(session({
-//   secret: secret?secret: 'secret',
-//   resave: false,
-//   saveUninitialized: false,
-//   // cookie: {
-//   //   sameSite: 'none',
-//   //   maxAge: 60 * 60 * 24,
-//   //   secure: true,
-//   // }
-// }))
 app.use((0, cookie_session_1.default)({
     secret: secret ? secret : 'secret',
     sameSite: 'none',
