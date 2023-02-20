@@ -16,15 +16,16 @@ const secret = process.env.SESSION_SECRET
 const port = process.env.PORT;
 initialize(passport)
 
+
+
+app.use(express.urlencoded( {extended: false} ))
 app.use(session({
   secret: secret?secret: 'secret',
   resave: false,
   saveUninitialized: false,
-  name: "miiya",
   cookie: {
     sameSite: 'none',
     maxAge: 60 * 60 * 24,
-    httpOnly: true,
     secure: true,
   }
 }))
@@ -32,7 +33,7 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(express.json())
-app.use(express.urlencoded( {extended: false} ))
+
 app.use(cors({
   origin: 'https://miiyachi-art-store.vercel.app',
   optionsSuccessStatus: 200,
