@@ -55,12 +55,10 @@ const gallery = process.env.GALLERY_PATH?process.env.GALLERY_PATH: "../gallery_i
 const commission = process.env.COMMISSION_PATH?process.env.COMMISSION_PATH: "../commission_images"
 
 if (!fs.existsSync(gallery)){
-  console.log("making directory gallery")
   fs.mkdirSync(gallery)
 }
 
 if (!fs.existsSync(commission)){
-  console.log("making directory commission")
   fs.mkdirSync(commission)
 }
 

@@ -51,11 +51,9 @@ app.use('/admin', (0, admin_1.default)(passport));
 const gallery = process.env.GALLERY_PATH ? process.env.GALLERY_PATH : "../gallery_images";
 const commission = process.env.COMMISSION_PATH ? process.env.COMMISSION_PATH : "../commission_images";
 if (!fs_1.default.existsSync(gallery)) {
-    console.log("making directory gallery");
     fs_1.default.mkdirSync(gallery);
 }
 if (!fs_1.default.existsSync(commission)) {
-    console.log("making directory commission");
     fs_1.default.mkdirSync(commission);
 }
 app.use('/static-gallery', express_1.default.static(gallery));

@@ -11,7 +11,6 @@ async function initialize(passport: PassportStatic) {
         }
         try {
             if (await bcrypt.compare(password, user.password)) {
-                console.log("success")
                 return done(null, user)
             } else{
                 return done(null, false, { message: 'Password incorrect'})
