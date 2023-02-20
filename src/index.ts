@@ -9,9 +9,20 @@ import passport = require('passport');
 import session from 'express-session'
 import initialize from './routes/passport-config'
 import fs from 'fs'
+import cookieSession from 'cookie-session'
+
 dotenv.config();
 const app: Express = express();
 const secret = process.env.SESSION_SECRET
+
+app.use(cookieSession({
+  secure: true,
+  sameSite: "none",
+  name: "miiya",
+  httpOnly: true,
+  maxAge: 60 * 60 * 24,
+}))
+
 app.use(session({
   secret: secret?secret: 'secret',
   resave: false,
@@ -19,7 +30,7 @@ app.use(session({
   name: "miiya",
   cookie: {
     sameSite: 'none',
-    maxAge: 60 * 60 * 24 * 1000,
+    maxAge: 60 * 60 * 24,
     httpOnly: true,
     secure: true,
   }
@@ -37,7 +48,7 @@ app.use(cors({
   // origin: 'https://miiyachi-art-store.vercel.app',
   origin: 'http://localhost:3000',
   optionsSuccessStatus: 200,
-  credentials: true
+  credentials: true,
 }
 ))
 app.use('/state', site_state)
