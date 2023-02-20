@@ -23,18 +23,18 @@ app.use(cookieSession({
   maxAge: 60 * 60 * 24,
 }))
 
-app.use(session({
-  secret: secret?secret: 'secret',
-  resave: false,
-  saveUninitialized: false,
-  name: "miiya",
-  cookie: {
-    sameSite: 'none',
-    maxAge: 60 * 60 * 24,
-    httpOnly: true,
-    secure: true,
-  }
-}))
+// app.use(session({
+//   secret: secret?secret: 'secret',
+//   resave: false,
+//   saveUninitialized: false,
+//   name: "miiya",
+//   cookie: {
+//     sameSite: 'none',
+//     maxAge: 60 * 60 * 24,
+//     httpOnly: true,
+//     secure: true,
+//   }
+// }))
 
 app.use((req: any, res, next)=>{
   req["sessionCookies"].secure = true;
