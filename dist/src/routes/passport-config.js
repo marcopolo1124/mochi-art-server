@@ -24,6 +24,7 @@ function initialize(passport) {
             }
             try {
                 if (yield bcrypt_1.default.compare(password, user.password)) {
+                    console.log("success");
                     return done(null, user);
                 }
                 else {

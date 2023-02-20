@@ -18,22 +18,12 @@ export default function Admin(passport: PassportStatic){
         (req, res, next) => {
             passport.authenticate(
                 'local', (err: any, user: any) => {
-                    if (err) {
-                        res.status(500).send({message: 'Server error'})
-                        return
-                    }
-                    if (!user) {
-                        res.status(404).send({message: 'User not found'})
-                        return
-                    }
+                    if (err !== null) return res.status(500).send({message: 'error Server error'})
+                    if (!user) return res.status(404).send({message: 'User not found'})
                     else {
-                        req.login(user, err => {
-                            if (err) {
-                                res.status(500).send({message: 'Server error', error: JSON.stringify(err)})
-                                return
-                            }
+                        req.login(user, error => {
+                            if (error) res.status(500).send({message: 'Server error', error: JSON.stringify(err)})
                             res.send({message: 'Successfully Authenticated'})
-                            return
                         })
                     }
                 }

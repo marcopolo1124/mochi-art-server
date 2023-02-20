@@ -14,22 +14,15 @@ function Admin(passport) {
     });
     admin.post('/login', (req, res, next) => {
         passport.authenticate('local', (err, user) => {
-            if (err) {
-                res.status(500).send({ message: 'Server error' });
-                return;
-            }
-            if (!user) {
-                res.status(404).send({ message: 'User not found' });
-                return;
-            }
+            if (err !== null)
+                return res.status(500).send({ message: 'error Server error' });
+            if (!user)
+                return res.status(404).send({ message: 'User not found' });
             else {
-                req.login(user, err => {
-                    if (err) {
+                req.login(user, error => {
+                    if (error)
                         res.status(500).send({ message: 'Server error', error: JSON.stringify(err) });
-                        return;
-                    }
                     res.send({ message: 'Successfully Authenticated' });
-                    return;
                 });
             }
         })(req, res, next);
