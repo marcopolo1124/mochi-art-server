@@ -9,6 +9,7 @@ import passport = require('passport');
 import session from 'express-session'
 import initialize from './routes/passport-config'
 import fs from 'fs'
+import cookieSession from 'cookie-session'
 
 dotenv.config();
 const app: Express = express();
@@ -19,15 +20,21 @@ initialize(passport)
 
 
 app.use(express.urlencoded( {extended: false} ))
-app.use(session({
+// app.use(session({
+//   secret: secret?secret: 'secret',
+//   resave: false,
+//   saveUninitialized: false,
+//   // cookie: {
+//   //   sameSite: 'none',
+//   //   maxAge: 60 * 60 * 24,
+//   //   secure: true,
+//   // }
+// }))
+app.use(cookieSession({
   secret: secret?secret: 'secret',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    sameSite: 'none',
-    maxAge: 60 * 60 * 24,
-    secure: true,
-  }
+  sameSite: 'none',
+  maxAge: 60 * 60 * 24,
+  secure: true
 }))
 
 app.use(passport.initialize())

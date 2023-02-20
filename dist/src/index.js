@@ -11,24 +11,30 @@ const comissions_1 = __importDefault(require("./routes/comissions"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
 const passport = require("passport");
-const express_session_1 = __importDefault(require("express-session"));
 const passport_config_1 = __importDefault(require("./routes/passport-config"));
 const fs_1 = __importDefault(require("fs"));
+const cookie_session_1 = __importDefault(require("cookie-session"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const secret = process.env.SESSION_SECRET;
 const port = process.env.PORT;
 (0, passport_config_1.default)(passport);
 app.use(express_1.default.urlencoded({ extended: false }));
-app.use((0, express_session_1.default)({
+// app.use(session({
+//   secret: secret?secret: 'secret',
+//   resave: false,
+//   saveUninitialized: false,
+//   // cookie: {
+//   //   sameSite: 'none',
+//   //   maxAge: 60 * 60 * 24,
+//   //   secure: true,
+//   // }
+// }))
+app.use((0, cookie_session_1.default)({
     secret: secret ? secret : 'secret',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        sameSite: 'none',
-        maxAge: 60 * 60 * 24,
-        secure: true,
-    }
+    sameSite: 'none',
+    maxAge: 60 * 60 * 24,
+    secure: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
