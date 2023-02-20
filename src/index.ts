@@ -15,35 +15,22 @@ dotenv.config();
 const app: Express = express();
 const secret = process.env.SESSION_SECRET
 
-app.use(cookieSession({
-  secure: true,
-  sameSite: "none",
+app.use(session({
+  secret: secret?secret: 'secret',
+  resave: false,
+  saveUninitialized: false,
   name: "miiya",
-  httpOnly: true,
-  maxAge: 60 * 60 * 24,
+  cookie: {
+    sameSite: 'none',
+    maxAge: 60 * 60 * 24,
+    httpOnly: true,
+    secure: true,
+  }
 }))
-
-// app.use(session({
-//   secret: secret?secret: 'secret',
-//   resave: false,
-//   saveUninitialized: false,
-//   name: "miiya",
-//   cookie: {
-//     sameSite: 'none',
-//     maxAge: 60 * 60 * 24,
-//     httpOnly: true,
-//     secure: true,
-//   }
-// }))
-
-app.use((req: any, res, next)=>{
-  req["sessionCookies"].secure = true;
-  next();
-});
 
 const port = process.env.PORT;
 initialize(passport)
-
+app.use((req, res, next) => {console.log(req.session); next()})
 
 app.use(passport.initialize())
 app.use(passport.session())
