@@ -9,7 +9,6 @@ import passport = require('passport');
 import session from 'express-session'
 import initialize from './routes/passport-config'
 import fs from 'fs'
-import cookieSession from 'cookie-session'
 
 dotenv.config();
 const app: Express = express();
