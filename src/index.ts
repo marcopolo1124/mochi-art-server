@@ -36,6 +36,11 @@ app.use(session({
   }
 }))
 
+app.use((req: any, res, next)=>{
+  req["sessionCookies"].secure = true;
+  next();
+});
+
 const port = process.env.PORT;
 initialize(passport)
 
