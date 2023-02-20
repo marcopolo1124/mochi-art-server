@@ -13,6 +13,8 @@ import fs from 'fs'
 dotenv.config();
 const app: Express = express();
 const secret = process.env.SESSION_SECRET
+const port = process.env.PORT;
+initialize(passport)
 
 app.use(session({
   secret: secret?secret: 'secret',
@@ -26,10 +28,6 @@ app.use(session({
     secure: true,
   }
 }))
-
-const port = process.env.PORT;
-initialize(passport)
-app.use((req, res, next) => {console.log(req.session); next()})
 
 app.use(passport.initialize())
 app.use(passport.session())
